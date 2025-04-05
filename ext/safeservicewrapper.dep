@@ -80,6 +80,7 @@ safeservicewrapper.lo: \
   /Users/lotti/repos/sogei/safe-service-wrappers-zephir/ext/php_safeservicewrapper.h \
   /Users/lotti/repos/sogei/safe-service-wrappers-zephir/ext/kernel/globals.h \
   /Users/lotti/repos/sogei/safe-service-wrappers-zephir/ext/safeservicewrapper.h \
+  /Users/lotti/repos/sogei/safe-service-wrappers-zephir/ext/safeservicewrapper/myredis.zep.h \
   /Users/lotti/repos/sogei/safe-service-wrappers-zephir/ext/safeservicewrapper/helloworld.zep.h \
   /opt/homebrew/Cellar/php@8.3/8.3.19_1/include/php/ext/standard/info.h \
   /opt/homebrew/Cellar/php@8.3/8.3.19_1/include/php/Zend/zend_exceptions.h \

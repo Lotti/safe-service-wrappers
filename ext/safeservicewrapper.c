@@ -24,6 +24,7 @@
 
 
 zend_class_entry *safeservicewrapper_helloworld_ce;
+zend_class_entry *safeservicewrapper_myredis_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(safeservicewrapper)
 
@@ -36,6 +37,7 @@ static PHP_MINIT_FUNCTION(safeservicewrapper)
 	REGISTER_INI_ENTRIES();
 	zephir_module_init();
 	ZEPHIR_INIT(SafeServiceWrapper_HelloWorld);
+	ZEPHIR_INIT(SafeServiceWrapper_MyRedis);
 	
 	return SUCCESS;
 }

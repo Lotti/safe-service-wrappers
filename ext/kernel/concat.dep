@@ -78,8 +78,8 @@ kernel/concat.lo: \
   php_ext.h php_safeservicewrapper.h kernel/globals.h \
   /opt/homebrew/Cellar/php@8.3/8.3.19_1/include/php/ext/standard/php_string.h \
   /opt/homebrew/Cellar/php@8.3/8.3.19_1/include/php/ext/random/php_random.h \
-  ext.h safeservicewrapper.h safeservicewrapper/helloworld.zep.h \
-  kernel/main.h \
+  ext.h safeservicewrapper.h safeservicewrapper/myredis.zep.h \
+  safeservicewrapper/helloworld.zep.h kernel/main.h \
   /opt/homebrew/Cellar/php@8.3/8.3.19_1/include/php/Zend/zend_interfaces.h \
   /opt/homebrew/Cellar/php@8.3/8.3.19_1/include/php/ext/spl/spl_exceptions.h \
   /opt/homebrew/Cellar/php@8.3/8.3.19_1/include/php/ext/spl/php_spl.h \

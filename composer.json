@@ -1,0 +1,10 @@
+{
+    "require": {
+        "phalcon/zephir": "^0.18.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SafeServiceWrapper\\": "safeservicewrapper/"
+        }
+    }
+}

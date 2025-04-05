@@ -4,6 +4,7 @@
 #ifndef ZEPHIR_CLASS_ENTRIES_H
 #define ZEPHIR_CLASS_ENTRIES_H
 
+#include "safeservicewrapper/myredis.zep.h"
 #include "safeservicewrapper/helloworld.zep.h"
 
 #endif
