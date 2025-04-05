@@ -1,2 +1,0 @@
-kernel/backtrace.lo: \
-  /Users/lotti/repos/sogei/safe-service-wrappers-zephir/ext/kernel/backtrace.c

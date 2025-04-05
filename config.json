@@ -57,13 +57,13 @@
     "indent": "spaces",
     "export-classes": false
   },
-  "extension-name": "safe-service-wrapper",
+  "extension-name": "safe_service_wrapper",
   "namespace": "safeservicewrapper",
   "name": "safeservicewrapper",
   "description": "Provides service wrappers that get credentials from CyberArk automatically",
   "author": "Valerio Riva",
   "version": "0.0.1",
-  "verbose": false,
+  "verbose": true,
   "requires": {
     "extensions": [
       "redis"
