@@ -1,7 +1,10 @@
 # Cache files, generates by Zephir
+.vscode/
+.idea/
 .zephir/
 .temp/
 .libs/
+vendor/
 
 # Object files, generates by linker
 *.lo

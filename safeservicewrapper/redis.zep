@@ -1,28 +1,26 @@
 namespace SafeServiceWrapper;
 
 class Redis extends \Redis {
-  private function getCredentials(mixed credentials) -> mixed {
+  private function getCredentials(var credentials) -> mixed {
     var env_password;
     let env_password = getenv("PASSWORD");
-    array array_credentials;
     if is_array(credentials) {
-      if count(credentials) === 2 {
-        let array_credentials[1] = env_password;
-      } else {
-        let array_credentials[0] = env_password;
-      }
-      return array_credentials;
+      return [credentials[0], env_password];
     } else {
       return env_password;
     }
   }
 
-  public function __construct(array! options = []) {
-    let options["auth"] = this->getCredentials(options["auth"]);
+  public function __construct(array options = []) {
+    if isset options["auth"] {
+      let options["auth"] = this->getCredentials(options["auth"]);  
+    } else {
+      let options["auth"] = this->getCredentials(null);
+    }
     parent::__construct(options);
   }
 
-  public function auth(mixed credentials) -> boolean {
+  public function auth(var credentials) -> boolean {
     return parent::auth(this->getCredentials(credentials));
   }
 
