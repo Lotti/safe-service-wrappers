@@ -66,7 +66,9 @@
   "verbose": true,
   "requires": {
     "extensions": [
-      "redis"
+      "redis",
+      "curl",
+      "json"
     ]
   }
 }
