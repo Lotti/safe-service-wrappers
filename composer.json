@@ -7,5 +7,20 @@
     "psr-4": {
       "SafeServiceWrapper\\": "safeservicewrapper/"
     }
+  },
+  "require-dev": {
+    "testcontainers/testcontainers": "^1.0",
+    "symfony/http-client": "^7.2",
+    "pestphp/pest": "^1.23"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "pestphp/pest-plugin": true
+    }
+  },
+  "scripts": {
+    "build": "./build.sh",
+    "test": "vendor/bin/pest"
   }
 }

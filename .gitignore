@@ -31,3 +31,6 @@ ext/libtool
 
 # log files
 *.log
+
+# cache files
+*.cache

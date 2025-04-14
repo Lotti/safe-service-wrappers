@@ -1,5 +1,7 @@
 namespace SafeServiceWrapper;
 
+use SafeServiceWrapper\Cryptography;
+
 /**
  * Client to interact with a CyberArk AIM-like service to fetch passwords using PHP functions.
  * Includes file-based caching, reads configuration from php.ini, and supports PEM/PFX/P12 certs.
@@ -30,7 +32,6 @@ class CyberarkClient
         string appId, safe, folder, baseUrl, certPath, certPassword, cachePath, certType;
         int timeout, cacheTtl;
         string cacheKey, cacheFilePath;
-        var cachedData;
         string certExtension;
 
         // --- Read Configuration from INI ---
@@ -51,13 +52,29 @@ class CyberarkClient
             echo "cacheFilePath: ".cacheFilePath."\n";
 
             if file_exists(cacheFilePath) {
-                let cachedData = unserialize(file_get_contents(cacheFilePath));
-                if typeof cachedData == "array" && isset cachedData["expires"] && isset cachedData["password"] && time() < cachedData["expires"] {
-                    // Cache hit and valid
-                    return [
-                        "password": cachedData["password"],
-                        "cache_hit": true
-                    ];
+                var encryptedContent, decryptedContent, cachedData;
+                let encryptedContent = file_get_contents(cacheFilePath);
+                if !empty encryptedContent {
+                    let decryptedContent = Cryptography::decryptData(encryptedContent);
+                    if decryptedContent !== false {
+                        let cachedData = unserialize(decryptedContent);
+                        if typeof cachedData == "array" && isset cachedData["expires"] && isset cachedData["password"] && time() < cachedData["expires"] {
+                            // Cache hit, decrypted, and valid
+                            return [
+                                "password": cachedData["password"],
+                                "cache_hit": true
+                            ];
+                        }
+                        // Decryption ok, but data invalid/expired - proceed to fetch
+                    } else {
+                        // Decryption failed (e.g., key change, corruption) - proceed to fetch
+                        // Optional: Log decryption error
+                        // error_log("CyberarkClient cache decryption failed for: " . cacheFilePath);
+                        // Optional: Delete corrupted cache file
+                        // unlink(cacheFilePath);
+                    }
+                } else {
+                    // Cache file exists but is empty - proceed to fetch
                 }
             }
         }
@@ -168,18 +185,27 @@ class CyberarkClient
                  "expires": time() + cacheTtl,
                  "password": password
              ];
-             // Ensure cache directory exists
-             if !is_dir(cachePath) {
-                 // Attempt to create recursively
-                 mkdir(cachePath, 0777, true);
-             }
-             // Write to cache file only if directory exists or was created
-             if is_dir(cachePath) && is_writable(cachePath) {
-                file_put_contents(cacheFilePath, serialize(cacheData));
-                // Consider adding file locking (flock) for concurrent requests if necessary
+             var serializedData, encryptedData;
+             let serializedData = serialize(cacheData);
+             let encryptedData = Cryptography::encryptData(serializedData);
+
+             if encryptedData !== false {
+                 // Ensure cache directory exists
+                 if !is_dir(cachePath) {
+                     // Attempt to create recursively
+                     mkdir(cachePath, 0777, true);
+                 }
+                 // Write encrypted data to cache file only if directory exists or was created
+                 if is_dir(cachePath) && is_writable(cachePath) {
+                    file_put_contents(cacheFilePath, encryptedData);
+                    // Consider adding file locking (flock) for concurrent requests if necessary
+                 } else {
+                    // Optional: Log a warning if cache directory is not writable
+                    // error_log("CyberarkClient cache directory not writable: " . cachePath);
+                 }
              } else {
-                // Optional: Log a warning if cache directory is not writable
-                // error_log("CyberarkClient cache directory not writable: " . cachePath);
+                 // Optional: Log encryption error
+                 // error_log("CyberarkClient cache encryption failed.");
              }
         }
         // --- End Store ---

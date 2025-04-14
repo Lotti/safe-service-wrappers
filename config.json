@@ -68,7 +68,10 @@
     "extensions": [
       "redis",
       "curl",
-      "json"
+      "json",
+      "sodium",
+      "pdo_mysql",
+      "mysqli"
     ]
   }
 }
