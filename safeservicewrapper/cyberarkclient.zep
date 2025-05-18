@@ -9,14 +9,7 @@ use SafeServiceWrapper\Cryptography;
 class CyberarkClient
 {
     // Default configuration values (used if INI settings are missing)
-    const DEFAULT_APP_ID = "YourAppID";
-    const DEFAULT_SAFE = "YourSafe";
-    const DEFAULT_FOLDER = "YourFolder";
-    const DEFAULT_BASE_URL = "http://localhost:8080"; // Target the mock server
-    const DEFAULT_TIMEOUT = 10; // Request timeout in seconds
-    const DEFAULT_CACHE_TTL = 60; // Cache time-to-live in seconds
     const CACHE_FILE_PREFIX = "cyberark_cache_";
-
     /**
      * Fetches a password from the CyberArk AIM service using PHP's cURL functions.
      * Checks cache first, fetches if expired or not found. Reads config from INI.
@@ -29,27 +22,24 @@ class CyberarkClient
      */
     public static function fetchPassword(string host, int port, string user) -> array
     {
-        string appId, safe, folder, baseUrl, certPath, certPassword, cachePath, certType;
         int timeout, cacheTtl;
-        string cacheKey, cacheFilePath;
-        string certExtension;
+        string certType, cacheKey, cacheFilePath, certExtension, cachePath;
 
         // --- Read Configuration from INI ---
-        let appId = ini_get("safeservicewrapper.appid") ?: self::DEFAULT_APP_ID;
-        let safe = ini_get("safeservicewrapper.safe") ?: self::DEFAULT_SAFE;
-        let folder = ini_get("safeservicewrapper.folder") ?: self::DEFAULT_FOLDER;
-        let baseUrl = ini_get("safeservicewrapper.base_url") ?: self::DEFAULT_BASE_URL;
-        let timeout = (int)(ini_get("safeservicewrapper.timeout") ?: self::DEFAULT_TIMEOUT);
-        let certPath = ini_get("safeservicewrapper.cert_path") ?: "";
-        let certPassword = ini_get("safeservicewrapper.cert_password") ?: "";
-        let cacheTtl = (int)(ini_get("safeservicewrapper.cache_ttl") ?: self::DEFAULT_CACHE_TTL);
+        var appId = ini_get("safeservicewrapper.appid");
+        var safe = ini_get("safeservicewrapper.safe");
+        var folder = ini_get("safeservicewrapper.folder");
+        var baseUrl = ini_get("safeservicewrapper.base_url");
+        let timeout = (int)ini_get("safeservicewrapper.timeout");
+        var certPath = ini_get("safeservicewrapper.cert_path");
+        var certPassword = ini_get("safeservicewrapper.cert_password");
+        let cacheTtl = (int)ini_get("safeservicewrapper.cache_ttl");
         let cachePath = ini_get("safeservicewrapper.cache_path") ?: sys_get_temp_dir();
 
         // --- Cache Check ---
         if cacheTtl > 0 {
             let cacheKey = md5(baseUrl . appId . safe . folder . host . port . user . certPath); // Include certPath in key
             let cacheFilePath = rtrim(cachePath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . self::CACHE_FILE_PREFIX . cacheKey;
-            echo "cacheFilePath: ".cacheFilePath."\n";
 
             if file_exists(cacheFilePath) {
                 var encryptedContent, decryptedContent, cachedData;

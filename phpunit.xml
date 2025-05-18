@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         requireCoverageMetadata="false"
+         beStrictAboutCoverageMetadata="false"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="false"
+         failOnWarning="false"
+         colors="true">
+  <testsuites>
+    <testsuite name="redis">
+      <directory>tests/unit/redis</directory>
+    </testsuite>
+    <testsuite name="maria">
+      <directory>tests/unit/maria</directory>
+    </testsuite>
+    <testsuite name="cyberark">
+      <directory>tests/unit/cyberark</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <env name="VALKEY_CONTAINER" value="test_valkey" />
+    <env name="MARIADB_CONTAINER" value="test_mariadb" />
+    <env name="CYBERARKMOCK_CONTAINER" value="test_cyberark" />
+    <env name="CONTAINER_NETWORK" value="test_network" />
+
+    <ini name="safeservicewrapper.redis_host" value="127.0.0.1" />
+    <ini name="safeservicewrapper.redis_port" value="6379" />
+
+    <ini name="safeservicewrapper.mariadb_host" value="127.0.0.1" />
+    <ini name="safeservicewrapper.mariadb_port" value="3307" />
+    <ini name="safeservicewrapper.mariadb_user" value="testuser" />
+    <ini name="safeservicewrapper.mariadb_database" value="testdb" />
+
+    <ini name="safeservicewrapper.appid" value="TestAppID"/>
+    <ini name="safeservicewrapper.safe" value="TestSafe"/>
+    <ini name="safeservicewrapper.folder" value="TestFolder"/>
+    <ini name="safeservicewrapper.base_url" value="http://127.0.0.1:3000"/>
+    <ini name="safeservicewrapper.timeout" value="5"/>
+    <ini name="safeservicewrapper.cert_path" value=""/>
+    <ini name="safeservicewrapper.cert_password" value=""/>
+    <ini name="safeservicewrapper.cache_ttl" value="60"/>
+    <ini name="safeservicewrapper.cache_path" value=""/>
+  </php>
+</phpunit>

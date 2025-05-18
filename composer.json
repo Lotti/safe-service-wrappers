@@ -1,26 +1,17 @@
 {
   "require": {
-    "ext-redis": ">=5.0.0",
-    "phalcon/zephir": "^0.18.0"
+    "ext-redis": ">=5.0.0"
   },
-  "autoload": {
+  "autoload-dev": {
     "psr-4": {
-      "SafeServiceWrapper\\": "safeservicewrapper/"
-    }
-  },
-  "require-dev": {
-    "testcontainers/testcontainers": "^1.0",
-    "symfony/http-client": "^7.2",
-    "pestphp/pest": "^1.23"
-  },
-  "config": {
-    "allow-plugins": {
-      "php-http/discovery": true,
-      "pestphp/pest-plugin": true
+      "Test\\": "tests/"
     }
   },
   "scripts": {
     "build": "./build.sh",
-    "test": "vendor/bin/pest"
+    "test": "vendor/bin/phpunit"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12"
   }
 }

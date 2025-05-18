@@ -64,6 +64,95 @@
   "author": "Valerio Riva",
   "version": "0.0.1",
   "verbose": true,
+  "globals": {
+    "appid": {
+      "type": "string",
+      "default": "TestAppID",
+      "ini-entry": {
+        "name": "safeservicewrapper.appid",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "safe": {
+      "type": "string",
+      "default": "TestSafe",
+      "ini-entry": {
+        "name": "safeservicewrapper.safe",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "folder": {
+      "type": "string",
+      "default": "TestFolder",
+      "ini-entry": {
+        "name": "safeservicewrapper.folder",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "base_url": {
+      "type": "string",
+      "default": "http://127.0.0.1:3000",
+      "ini-entry": {
+        "name": "safeservicewrapper.base_url",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "timeout": {
+      "type": "string",
+      "default": 5,
+      "ini-entry": {
+        "name": "safeservicewrapper.timeout",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "cert_path": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.cert_path",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "cert_password": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.cert_password",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "cache_ttl": {
+      "type": "string",
+      "default": 60,
+      "ini-entry": {
+        "name": "safeservicewrapper.cache_ttl",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "cache_path": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.cache_path",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    }
+  },
+  "ini": {
+    "safeservicewrapper.appid":"TestAppID",
+    "safeservicewrapper.safe":"TestSafe",
+    "safeservicewrapper.folder":"TestFolder",
+    "safeservicewrapper.base_url":"http://127.0.0.1:3000",
+    "safeservicewrapper.timeout": 5,
+    "safeservicewrapper.cert_path":"",
+    "safeservicewrapper.cert_password": "",
+    "safeservicewrapper.cache_ttl": 60,
+    "safeservicewrapper.cache_path": ""
+  },
+  "info": {
+    "some_information": "This is additional information about your extension",
+    "another_information": "You can add more information here"
+  },
   "requires": {
     "extensions": [
       "redis",
