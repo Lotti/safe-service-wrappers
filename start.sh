@@ -39,7 +39,7 @@ CYBERARK_CONTAINER_ID=$(docker run -d --rm --name "${CYBERARK_CONTAINER_NAME}" \
   -v "${PROJECT_ROOT}/tests/mocks:/app" \
   -p 3000:8080 \
   php:8.3-cli \
-  php -S 0.0.0.0:8080 -t /app tests/mocks/mock_cyberark_server.php)
+  php -S 0.0.0.0:8080 -t /app /app/mock_cyberark_server.php)
 echo "CyberArk container started: ${CYBERARK_CONTAINER_ID}"
 
 set +e

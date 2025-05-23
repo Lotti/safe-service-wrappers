@@ -45,6 +45,8 @@ class Redis extends \Redis {
   }
 
   public function __construct(array options = []) {
+    var_export(options, true);
+
     if isset options["host"] {
       if !isset options["port"] {
         let options["port"] = 6379;

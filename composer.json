@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "./build.sh",
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit",
+    "build-test": ["composer build", "composer test"]
   },
   "require-dev": {
     "phpunit/phpunit": "^12"

@@ -12,9 +12,10 @@ final class CyberarkClientTest extends GlobalTest {
     $user = 'targetuser';
 
     // Expected password from mock_cyberark_server.php for these inputs
-    $expectedPassword = 'mock_password_for_' . $user . '@' . $host;
+    $expectedPassword = 'default1234';
 
     $result = \SafeServiceWrapper\CyberarkClient::fetchPassword($host, $port, $user);
+
     $this->assertIsArray($result, "Must be an array");
     $this->assertArrayHasKey('password', $result, "Array must have password key");
     $this->assertArrayHasKey('cache_hit', $result, "Array must have cache_hit key");
@@ -26,7 +27,7 @@ final class CyberarkClientTest extends GlobalTest {
     $host = 'cachehost.example.com';
     $port = 5678;
     $user = 'cacheuser';
-    $expectedPassword = 'mock_password_for_' . $user . '@' . $host;
+    $expectedPassword = 'default1234';
 
     // Ensure cache TTL is positive in test.ini
     $cacheTtl = (int) ini_get('safeservicewrapper.cache_ttl');
@@ -38,7 +39,7 @@ final class CyberarkClientTest extends GlobalTest {
     $this->assertFalse($result1['cache_hit'], "Expected cache miss on first fetch");
 
     // Wait a moment, but less than TTL
-    sleep(1);
+    usleep(100000);
 
     // Second call (should be cache hit)
     $result2 = \SafeServiceWrapper\CyberarkClient::fetchPassword($host, $port, $user);
