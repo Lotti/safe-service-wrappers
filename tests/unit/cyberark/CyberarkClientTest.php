@@ -27,7 +27,7 @@ final class CyberarkClientTest extends GlobalTest {
     $host = 'cachehost.example.com';
     $port = 5678;
     $user = 'cacheuser';
-    $expectedPassword = 'default1234';
+    $expectedPassword = 'cache1234';
 
     // Ensure cache TTL is positive in test.ini
     $cacheTtl = intval(ini_get('safeservicewrapper.curl.cache_ttl'));
@@ -39,10 +39,11 @@ final class CyberarkClientTest extends GlobalTest {
     $this->assertFalse($result1['cache_hit'], "Expected cache miss on first fetch");
 
     // Wait a moment, but less than TTL
-    usleep(100000);
+    sleep(1);
 
     // Second call (should be cache hit)
     $result2 = \SafeServiceWrapper\CyberarkClient::fetchPassword($host, $port, $user);
+    $this->assertSame($result1['cache_file'], $result2['cache_file']);
     $this->assertSame($result2['password'], $expectedPassword, "Password should match configured one");
     $this->assertFalse($result2['cache_hit'], "Expected cache hit on second fetch");
  }

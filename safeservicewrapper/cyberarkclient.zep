@@ -52,6 +52,7 @@ class CyberarkClient
                             // Cache hit, decrypted, and valid
                             return [
                                 "password": cachedData["password"],
+                                "cache_file": cacheFilePath,
                                 "cache_hit": true
                             ];
                         }
@@ -172,7 +173,7 @@ class CyberarkClient
         // --- Store in Cache ---
         if cacheTtl > 0 && strlen(cacheFilePath) > 0 { // Only cache if TTL > 0 and path was determined
              var cacheData = [
-                 "expires": time() + cacheTtl * 60,
+                 "expires": time() + cacheTtl,
                  "password": password
              ];
              var serializedData, encryptedData;
@@ -203,6 +204,7 @@ class CyberarkClient
         // Return fetched password and cache status
         return [
             "password": password,
+            "cache_file": cacheFilePath,
             "cache_hit": false // It was fetched, not from cache this time
         ];
     }

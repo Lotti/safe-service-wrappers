@@ -8,10 +8,10 @@ final class MariaDbPdoTest extends GlobalTest
 {
   public function testMariaDbPDOWrapper(): void
   {
-    $host = getnev('MARIADB_HOST');
-    $port = getnev('MARIADB_PORT');
-    $user = getnev('MARIADB_USER');
-    $dbname = getnev('MARIADB_DATABASE');
+    $host = getenv('MARIADB_HOST');
+    $port = getenv('MARIADB_PORT');
+    $user = getenv('MARIADB_USER');
+    $dbname = getenv('MARIADB_DATABASE');
 
     // Create a MariaDbPdo instance
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
@@ -23,7 +23,7 @@ final class MariaDbPdoTest extends GlobalTest
     $this->assertInstanceOf('PDOStatement', $result, "Querying should return instance of PDOStatement class");
 
     $row = $result->fetch(\PDO::FETCH_NUM);
-    $this->assertSame($row, [2], "Row should be equal to [2]");
+    $this->assertSame($row, ["2"], "Row should be equal to [2]");
 
     $pdo->close();
   }

@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class GlobalTest extends TestCase {
   public static function setUpBeforeClass(): void {
-    echo "Starting containers...\n";
+    // echo "Starting containers...\n";
 
     $valkeyContainerName = getenv('VALKEY_CONTAINER');
     $mariaDBContainerName = getenv('MARIADB_CONTAINER');
@@ -20,7 +20,7 @@ abstract class GlobalTest extends TestCase {
   }
 
   public static function tearDownAfterClass(): void {
-    echo "Stopping containers...\n";
+    // echo "Stopping containers...\n";
 
     $valkeyContainerName = getenv('VALKEY_CONTAINER');
     $mariaDBContainerName = getenv('MARIADB_CONTAINER');

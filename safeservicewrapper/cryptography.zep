@@ -71,7 +71,7 @@ class Cryptography
      * @return string|boolean The base64 encoded encrypted payload (structure: [encrypted_sym_key][nonce][aead_ciphertext]) or false on failure.
      */
     public static function encryptData(string data) -> string | boolean
-    {        
+    {
         var error;
 
         // 1. Load Recipient's Public Key bytes

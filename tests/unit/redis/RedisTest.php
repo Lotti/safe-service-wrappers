@@ -9,7 +9,7 @@ final class RedisTest extends GlobalTest {
     \SafeServiceWrapper\Redis::configureSessionHandling();
     $session_handler = ini_get('session.save_handler');
     $session_path = ini_get('session.save_path');
-    $this->assertEquals('tcp://127.0.0.1:6379?weight=1&persistent=0&prefix=PHPREDIS_SESSION%3A&auth=default1234&database=0', $session_path);
+    $this->assertEquals('tcp://127.0.0.1:6379?weight=1&persistent=0&prefix=PHPREDIS_SESSION%3A&auth[]=test&auth[]=test1234&database=0', $session_path);
     $this->assertEquals('redis', $session_handler);
   }
   public function testRedisConstructor(): void
