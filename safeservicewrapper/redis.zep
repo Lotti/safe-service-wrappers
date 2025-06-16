@@ -9,7 +9,7 @@ class Redis extends \Redis {
    * @param mixed credentials The credentials passed to auth() or constructor
    * @return mixed The processed credentials with password from CyberArk
    */
-  private function getCredentials(var host, var port, var credentials) -> array|string {
+  private static function getCredentials(var host, var port, var credentials) -> array|string {
     var password, cyberarkResult, user = "", cyberarkException;
     
     // Determine user from credentials or default to empty string
@@ -24,13 +24,14 @@ class Redis extends \Redis {
       // Extract password from result (CyberarkClient returns ["password": string, "cache_hit": bool])
       if typeof cyberarkResult == "array" && isset cyberarkResult["password"] {
         let password = cyberarkResult["password"];
-        
+        /*
         // Optional: Log cache hit/miss status for debugging
         if isset cyberarkResult["cache_hit"] && cyberarkResult["cache_hit"] {
           echo "CyberArk password cache hit for " . host . ":" . port. "@" . user . "\n";
         } else {
           echo "CyberArk password cache miss for " . host . ":" . port. "@" . user . "\n";
         }
+        */
       }
     } catch \Exception, cyberarkException {
       throw new \Exception("Error while retrieving Redis password from Cyberark: " . cyberarkException->getMessage());      // Fallback to environment variable if CyberarkClient throws an exception
@@ -45,24 +46,22 @@ class Redis extends \Redis {
   }
 
   public function __construct(array options = []) {
-    var_export(options, true);
-
     if isset options["host"] {
       if !isset options["port"] {
         let options["port"] = 6379;
       }
 
       if isset options["auth"] {
-        let options["auth"] = this->getCredentials(options["host"], options["port"], options["auth"]);  
+        let options["auth"] = self::getCredentials(options["host"], options["port"], options["auth"]);
       } else {
-        let options["auth"] = this->getCredentials(options["host"], options["port"], null);
+        let options["auth"] = self::getCredentials(options["host"], options["port"], null);
       }
     }
     parent::__construct(options);
   }
 
   public function auth(var credentials) -> boolean {
-    return parent::auth(this->getCredentials(this->getHost(), this->getPort(), credentials));
+    return parent::auth(self::getCredentials(this->getHost(), this->getPort(), credentials));
   }
 
   public function getAuth() -> mixed {
@@ -113,11 +112,16 @@ class Redis extends \Redis {
       if !empty prefix {
           let parts[] = "prefix=" . urlencode(prefix);
       }
+
       if !empty user {
-          let parts[] = "auth[]=" . urlencode(user); // URL-encode password just in case
-          // TODO: recover password from cyberark
-          // let parts[] = "auth[]=" . urlencode(password); // URL-encode password just in case
+          var secrets = self::getCredentials(host, port, [user, null]);
+          let parts[] = "auth[]=" . urlencode(user);
+          let parts[] = "auth[]=" . urlencode(secrets[1]);
+      } else {
+          var secrets = self::getCredentials(host, port, null);
+          let parts[] = "auth=" . urlencode(secrets);
       }
+
       let parts[] = "database=" . database;
 
       if count(parts) > 0 {

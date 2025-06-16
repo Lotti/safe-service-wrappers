@@ -28,14 +28,15 @@
       <directory>tests/unit/cyberark</directory>
     </testsuite>
   </testsuites>
+
   <php>
     <env name="VALKEY_CONTAINER" value="test_valkey" />
     <env name="MARIADB_CONTAINER" value="test_mariadb" />
     <env name="CYBERARKMOCK_CONTAINER" value="test_cyberark" />
     <env name="CONTAINER_NETWORK" value="test_network" />
 
-    <ini name="safeservicewrapper.redis_host" value="127.0.0.1" />
-    <ini name="safeservicewrapper.redis_port" value="6379" />
+    <env name="VALKEY_HOST" value="127.0.0.1" />
+    <env name="VALKEY_PORT" value="6379" />
 
     <ini name="safeservicewrapper.mariadb_host" value="127.0.0.1" />
     <ini name="safeservicewrapper.mariadb_port" value="3307" />
@@ -51,5 +52,17 @@
     <ini name="safeservicewrapper.cert_password" value=""/>
     <ini name="safeservicewrapper.cache_ttl" value="60"/>
     <ini name="safeservicewrapper.cache_path" value=""/>
+
+    <ini name="safeservicewrapper.redis.session_host" value="127.0.0.1"/>
+    <ini name="safeservicewrapper.redis.session_port" value="6379"/>
+    <ini name="safeservicewrapper.redis.session_user" value="test"/>
+    <ini name="safeservicewrapper.redis.session_prefix" value="PHPREDIS_SESSION:"/>
+    <ini name="safeservicewrapper.redis.weight" value="1"/>
+    <ini name="safeservicewrapper.redis.session_timeout" value="0"/>
+    <ini name="safeservicewrapper.redis.session_database" value="0"/>
+    <ini name="safeservicewrapper.redis.session_persistent" value="0"/>
+
+    <ini name="safeservicewrapper.crypto.public_key_path" value="/Users/lotti/repos/sogei/safe-service-wrappers/keys/public.key.pub"/>
+    <ini name="safeservicewrapper.crypto.private_key_path" value="/Users/lotti/repos/sogei/safe-service-wrappers/keys/private.key"/>
   </php>
 </phpunit>

@@ -10,12 +10,8 @@ class Cryptography
 {
     // --- Configuration ---
     // INI setting names for key paths
-    const INI_PUBLIC_KEY_PATH = "safeservicewrapper.libsodium_public_key_path";
-    const INI_PRIVATE_KEY_PATH = "safeservicewrapper.libsodium_private_key_path";
-
-    // Default paths (empty, forcing INI configuration)
-    const DEFAULT_PUBLIC_KEY_PATH = "";
-    const DEFAULT_PRIVATE_KEY_PATH = "";
+    const INI_PUBLIC_KEY_PATH = "safeservicewrapper.crypto.public_key_path";
+    const INI_PRIVATE_KEY_PATH = "safeservicewrapper.crypto.private_key_path";
 
     // Libsodium constants (adjust if needed, but these are standard)
     const SYMMETRIC_KEY_BYTES = SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_KEYBYTES;
@@ -30,7 +26,7 @@ class Cryptography
     private static function loadPublicKeyBytes() -> string | boolean
     {
         var publicKeyPath;
-        let publicKeyPath = empty ini_get(self::INI_PUBLIC_KEY_PATH) ?: self::DEFAULT_PUBLIC_KEY_PATH;
+        let publicKeyPath = ini_get(self::INI_PUBLIC_KEY_PATH);
         if empty publicKeyPath || !file_exists(publicKeyPath) || !is_readable(publicKeyPath) {
             // error_log("Libsodium Cryptography Error: Public key path invalid or not readable: " . publicKeyPath);
             return false;
@@ -52,7 +48,7 @@ class Cryptography
     private static function loadPrivateKeyBytes() -> string | boolean
     {
         var privateKeyPath;
-        let privateKeyPath = ini_get(self::INI_PRIVATE_KEY_PATH) ?: self::DEFAULT_PRIVATE_KEY_PATH;
+        let privateKeyPath = ini_get(self::INI_PRIVATE_KEY_PATH);
          if empty privateKeyPath || !file_exists(privateKeyPath) || !is_readable(privateKeyPath) {
             // error_log("Libsodium Cryptography Error: Private key path invalid or not readable: " . privateKeyPath);
             return false;

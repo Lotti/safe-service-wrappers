@@ -170,7 +170,7 @@ class CyberarkClient
         // --- End Fetch ---
 
         // --- Store in Cache ---
-        if cacheTtl > 0 && cacheFilePath { // Only cache if TTL > 0 and path was determined
+        if cacheTtl > 0 && strlen(cacheFilePath) > 0 { // Only cache if TTL > 0 and path was determined
              var cacheData = [
                  "expires": time() + cacheTtl,
                  "password": password
@@ -191,11 +191,11 @@ class CyberarkClient
                     // Consider adding file locking (flock) for concurrent requests if necessary
                  } else {
                     // Optional: Log a warning if cache directory is not writable
-                    // error_log("CyberarkClient cache directory not writable: " . cachePath);
+                    error_log("CyberarkClient cache directory not writable: " . cachePath);
                  }
              } else {
                  // Optional: Log encryption error
-                 // error_log("CyberarkClient cache encryption failed.");
+                 error_log("CyberarkClient cache encryption failed.");
              }
         }
         // --- End Store ---

@@ -12,7 +12,6 @@ $targetPath = '/AIMWebService/api/Accounts';
 if ($requestMethod === 'GET' && strpos($requestUri, $targetPath) === 0) {
     // Log received query parameters (optional, for debugging)
     // file_put_contents('mock_server.log', 'Received request: ' . $requestUri . "\n", FILE_APPEND);
-
     if (isset($_GET['Name'])) {
       switch($_GET['Name']) {
         case 'test':

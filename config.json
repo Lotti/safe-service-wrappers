@@ -136,6 +136,86 @@
         "name": "safeservicewrapper.cache_path",
         "scope": "PHP_INI_SYSTEM"
       }
+    },
+    "redis.session_host": {
+      "type": "string",
+      "default": "127.0.0.1",
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.session_host",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "redis.session_port": {
+      "type": "string",
+      "default": 6379,
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.session_port",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "redis.session_user": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.session_user",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "redis.session_prefix": {
+      "type": "string",
+      "default": "PHPREDIS_SESSION:",
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.session_prefix",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "redis.weight": {
+      "type": "string",
+      "default": 1,
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.weight",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "redis.session_timeout": {
+      "type": "string",
+      "default": 0,
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.session_timeout",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "redis.session_database": {
+      "type": "string",
+      "default": 0,
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.session_database",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "redis.session_persistent": {
+      "type": "string",
+      "default": 0,
+      "ini-entry": {
+        "name": "safeservicewrapper.redis.session_persistent",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "crypto.public_key_path": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.crypto.public_key_path",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "crypto.private_key_path": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.crypto.private_key_path",
+        "scope": "PHP_INI_SYSTEM"
+      }
     }
   },
   "ini": {
@@ -147,7 +227,17 @@
     "safeservicewrapper.cert_path":"",
     "safeservicewrapper.cert_password": "",
     "safeservicewrapper.cache_ttl": 60,
-    "safeservicewrapper.cache_path": ""
+    "safeservicewrapper.cache_path": "",
+    "safeservicewrapper.redis.session_host": "",
+    "safeservicewrapper.redis.session_port": 6379,
+    "safeservicewrapper.redis.session_user": "",
+    "safeservicewrapper.redis.session_prefix": "PHPREDIS_SESSION:",
+    "safeservicewrapper.redis.weight": 1,
+    "safeservicewrapper.redis.session_timeout": 0,
+    "safeservicewrapper.redis.session_database": 0,
+    "safeservicewrapper.redis.session_persistent": 0,
+    "safeservicewrapper.crypto.public_key_path": "",
+    "safeservicewrapper.crypto.private_key_path": ""
   },
   "info": {
     "some_information": "This is additional information about your extension",
