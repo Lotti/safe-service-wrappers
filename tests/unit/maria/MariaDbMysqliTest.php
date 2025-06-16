@@ -9,10 +9,10 @@ final class MariaDbMysqliTest extends GlobalTest
   public function testMysqliWrapper(): void
   {
     // Use the network alias and internal port configured in test.ini
-    $host = ini_get('safeservicewrapper.mariadb_host');
-    $port = ini_get('safeservicewrapper.mariadb_port');
-    $user = ini_get('safeservicewrapper.mariadb_user');
-    $dbname = ini_get('safeservicewrapper.mariadb_database');
+    $host = getnev('MARIADB_HOST');
+    $port = getnev('MARIADB_PORT');
+    $user = getnev('MARIADB_USER');
+    $dbname = getnev('MARIADB_DATABASE');
 
     // Create a MariaDbMysqli instance
     $mysqli = new \SafeServiceWrapper\Mysqli($host, $user, $dbname, $port);

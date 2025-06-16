@@ -65,75 +65,75 @@
   "version": "0.0.1",
   "verbose": true,
   "globals": {
-    "appid": {
+    "cyberark.appid": {
       "type": "string",
       "default": "TestAppID",
       "ini-entry": {
-        "name": "safeservicewrapper.appid",
+        "name": "safeservicewrapper.cyberark.appid",
         "scope": "PHP_INI_SYSTEM"
       }
     },
-    "safe": {
+    "cyberark.safe": {
       "type": "string",
       "default": "TestSafe",
       "ini-entry": {
-        "name": "safeservicewrapper.safe",
+        "name": "safeservicewrapper.cyberark.safe",
         "scope": "PHP_INI_SYSTEM"
       }
     },
-    "folder": {
+    "cyberark.folder": {
       "type": "string",
       "default": "TestFolder",
       "ini-entry": {
-        "name": "safeservicewrapper.folder",
+        "name": "safeservicewrapper.cyberark.folder",
         "scope": "PHP_INI_SYSTEM"
       }
     },
-    "base_url": {
+    "cyberark.base_url": {
       "type": "string",
       "default": "http://127.0.0.1:3000",
       "ini-entry": {
-        "name": "safeservicewrapper.base_url",
+        "name": "safeservicewrapper.cyberark.base_url",
         "scope": "PHP_INI_SYSTEM"
       }
     },
-    "timeout": {
+    "cyberark.cert_path": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.cyberark.cert_path",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "cyberark.cert_password": {
+      "type": "string",
+      "default": "",
+      "ini-entry": {
+        "name": "safeservicewrapper.cyberark.cert_password",
+        "scope": "PHP_INI_SYSTEM"
+      }
+    },
+    "curl.timeout": {
       "type": "string",
       "default": 5,
       "ini-entry": {
-        "name": "safeservicewrapper.timeout",
+        "name": "safeservicewrapper.curl.timeout",
         "scope": "PHP_INI_SYSTEM"
       }
     },
-    "cert_path": {
-      "type": "string",
-      "default": "",
-      "ini-entry": {
-        "name": "safeservicewrapper.cert_path",
-        "scope": "PHP_INI_SYSTEM"
-      }
-    },
-    "cert_password": {
-      "type": "string",
-      "default": "",
-      "ini-entry": {
-        "name": "safeservicewrapper.cert_password",
-        "scope": "PHP_INI_SYSTEM"
-      }
-    },
-    "cache_ttl": {
+    "curl.cache_ttl": {
       "type": "string",
       "default": 60,
       "ini-entry": {
-        "name": "safeservicewrapper.cache_ttl",
+        "name": "safeservicewrapper.curl.cache_ttl",
         "scope": "PHP_INI_SYSTEM"
       }
     },
-    "cache_path": {
+    "curl.cache_path": {
       "type": "string",
       "default": "",
       "ini-entry": {
-        "name": "safeservicewrapper.cache_path",
+        "name": "safeservicewrapper.curl.cache_path",
         "scope": "PHP_INI_SYSTEM"
       }
     },
@@ -219,15 +219,15 @@
     }
   },
   "ini": {
-    "safeservicewrapper.appid":"TestAppID",
-    "safeservicewrapper.safe":"TestSafe",
-    "safeservicewrapper.folder":"TestFolder",
-    "safeservicewrapper.base_url":"http://127.0.0.1:3000",
-    "safeservicewrapper.timeout": 5,
-    "safeservicewrapper.cert_path":"",
-    "safeservicewrapper.cert_password": "",
-    "safeservicewrapper.cache_ttl": 60,
-    "safeservicewrapper.cache_path": "",
+    "safeservicewrapper.cyberark.appid":"TestAppID",
+    "safeservicewrapper.cyberark.safe":"TestSafe",
+    "safeservicewrapper.cyberark.folder":"TestFolder",
+    "safeservicewrapper.cyberark.base_url":"http://127.0.0.1:3000",
+    "safeservicewrapper.cyberark.cert_path":"",
+    "safeservicewrapper.cyberark.cert_password": "",
+    "safeservicewrapper.curl.timeout": 5,
+    "safeservicewrapper.curl.cache_ttl": 60,
+    "safeservicewrapper.curl.cache_path": "",
     "safeservicewrapper.redis.session_host": "",
     "safeservicewrapper.redis.session_port": 6379,
     "safeservicewrapper.redis.session_user": "",

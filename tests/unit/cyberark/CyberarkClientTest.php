@@ -30,7 +30,7 @@ final class CyberarkClientTest extends GlobalTest {
     $expectedPassword = 'default1234';
 
     // Ensure cache TTL is positive in test.ini
-    $cacheTtl = (int) ini_get('safeservicewrapper.cache_ttl');
+    $cacheTtl = intval(ini_get('safeservicewrapper.curl.cache_ttl'));
     $this->assertGreaterThan(0, $cacheTtl, "Cache TTL must be > 0 for this test in test.ini");
 
     // First call (should be cache miss or fill cache)

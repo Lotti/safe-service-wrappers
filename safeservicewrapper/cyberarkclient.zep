@@ -26,19 +26,19 @@ class CyberarkClient
         string certType, cacheKey, cacheFilePath, certExtension, cachePath;
 
         // --- Read Configuration from INI ---
-        var appId = ini_get("safeservicewrapper.appid");
-        var safe = ini_get("safeservicewrapper.safe");
-        var folder = ini_get("safeservicewrapper.folder");
-        var baseUrl = ini_get("safeservicewrapper.base_url");
-        let timeout = (int)ini_get("safeservicewrapper.timeout");
-        var certPath = ini_get("safeservicewrapper.cert_path");
-        var certPassword = ini_get("safeservicewrapper.cert_password");
-        let cacheTtl = (int)ini_get("safeservicewrapper.cache_ttl");
-        let cachePath = ini_get("safeservicewrapper.cache_path") ?: sys_get_temp_dir();
+        var appId = ini_get("safeservicewrapper.cyberark.appid");
+        var safe = ini_get("safeservicewrapper.cyberark.safe");
+        var folder = ini_get("safeservicewrapper.cyberark.folder");
+        var baseUrl = ini_get("safeservicewrapper.cyberark.base_url");
+        var certPath = ini_get("safeservicewrapper.cyberark.cert_path");
+        var certPassword = ini_get("safeservicewrapper.cyberark.cert_password");
+        let timeout = (int)ini_get("safeservicewrapper.curl.timeout");
+        let cacheTtl = (int)ini_get("safeservicewrapper.curl.cache_ttl");
+        let cachePath = ini_get("safeservicewrapper.curl.cache_path") ?: sys_get_temp_dir();
 
         // --- Cache Check ---
         if cacheTtl > 0 {
-            let cacheKey = md5(baseUrl . appId . safe . folder . host . port . user . certPath); // Include certPath in key
+            let cacheKey = md5(baseUrl . appId . safe . folder . host . port . user . certPath . cachePath); // Include certPath in key
             let cacheFilePath = rtrim(cachePath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . self::CACHE_FILE_PREFIX . cacheKey;
 
             if file_exists(cacheFilePath) {
@@ -172,7 +172,7 @@ class CyberarkClient
         // --- Store in Cache ---
         if cacheTtl > 0 && strlen(cacheFilePath) > 0 { // Only cache if TTL > 0 and path was determined
              var cacheData = [
-                 "expires": time() + cacheTtl,
+                 "expires": time() + cacheTtl * 60,
                  "password": password
              ];
              var serializedData, encryptedData;

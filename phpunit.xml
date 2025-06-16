@@ -38,20 +38,21 @@
     <env name="VALKEY_HOST" value="127.0.0.1" />
     <env name="VALKEY_PORT" value="6379" />
 
-    <ini name="safeservicewrapper.mariadb_host" value="127.0.0.1" />
-    <ini name="safeservicewrapper.mariadb_port" value="3307" />
-    <ini name="safeservicewrapper.mariadb_user" value="testuser" />
-    <ini name="safeservicewrapper.mariadb_database" value="testdb" />
+    <env name="MARIADB_HOST" value="127.0.0.1"/>
+    <env name="MARIADB_PORT" value="3307"/>
+    <env name="MARIADB_USER" value="testuser"/>
+    <env name="MARIADB_DATABASE" value="testdb"/>
 
-    <ini name="safeservicewrapper.appid" value="TestAppID"/>
-    <ini name="safeservicewrapper.safe" value="TestSafe"/>
-    <ini name="safeservicewrapper.folder" value="TestFolder"/>
-    <ini name="safeservicewrapper.base_url" value="http://127.0.0.1:3000"/>
-    <ini name="safeservicewrapper.timeout" value="5"/>
-    <ini name="safeservicewrapper.cert_path" value=""/>
-    <ini name="safeservicewrapper.cert_password" value=""/>
-    <ini name="safeservicewrapper.cache_ttl" value="60"/>
-    <ini name="safeservicewrapper.cache_path" value=""/>
+    <ini name="safeservicewrapper.cyberark.appid" value="TestAppID"/>
+    <ini name="safeservicewrapper.cyberark.safe" value="TestSafe"/>
+    <ini name="safeservicewrapper.cyberark.folder" value="TestFolder"/>
+    <ini name="safeservicewrapper.cyberark.base_url" value="http://127.0.0.1:3000"/>
+    <ini name="safeservicewrapper.cyberark.cert_path" value=""/>
+    <ini name="safeservicewrapper.cyberark.cert_password" value=""/>
+
+    <ini name="safeservicewrapper.curl.timeout" value="5"/>
+    <ini name="safeservicewrapper.curl.cache_ttl" value="60"/>
+    <ini name="safeservicewrapper.curl.cache_path" value=""/>
 
     <ini name="safeservicewrapper.redis.session_host" value="127.0.0.1"/>
     <ini name="safeservicewrapper.redis.session_port" value="6379"/>

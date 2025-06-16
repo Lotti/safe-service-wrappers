@@ -89,14 +89,14 @@ class Redis extends \Redis {
       array parts;
 
       // Read settings from INI, providing defaults
-      let host = ini_get("safeservicewrapper.session_host") ?: "127.0.0.1";
-      let port = (int)(ini_get("safeservicewrapper.session_port") ?: 6379);
-      let user = ini_get("safeservicewrapper.session_user") ?: ""; // Empty means no auth
-      let prefix = ini_get("safeservicewrapper.session_prefix") ?: "PHPREDIS_SESSION:";
-      let weight = (int)(ini_get("safeservicewrapper.weight") ?: 1); // 0 means use default php.ini session.gc_maxlifetime
-      let timeout = (int)(ini_get("safeservicewrapper.session_timeout") ?: 0); // 0 means use default php.ini session.gc_maxlifetime
-      let database = (int)(ini_get("safeservicewrapper.session_database") ?: 0);
-      let persistent = (int)(ini_get("safeservicewrapper.session_persistent") ?: 0); // 0 = non-persistent
+      let host = ini_get("safeservicewrapper.redis.session_host") ?: "127.0.0.1";
+      let port = (int)(ini_get("safeservicewrapper.redis.session_port") ?: 6379);
+      let user = ini_get("safeservicewrapper.redis.session_user") ?: ""; // Empty means no auth
+      let prefix = ini_get("safeservicewrapper.redis.session_prefix") ?: "PHPREDIS_SESSION:";
+      let weight = (int)(ini_get("safeservicewrapper.redis.weight") ?: 1); // 0 means use default php.ini session.gc_maxlifetime
+      let timeout = (int)(ini_get("safeservicewrapper.redis.session_timeout") ?: 0); // 0 means use default php.ini session.gc_maxlifetime
+      let database = (int)(ini_get("safeservicewrapper.redis.session_database") ?: 0);
+      let persistent = (int)(ini_get("safeservicewrapper.redis.session_persistent") ?: 0); // 0 = non-persistent
 
       // Construct the save_path string
       // Format: tcp://host:port?auth=password&prefix=prefix&timeout=timeout&database=db&persistent=1&retry_interval=10&read_timeout=2

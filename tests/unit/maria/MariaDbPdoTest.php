@@ -8,10 +8,10 @@ final class MariaDbPdoTest extends GlobalTest
 {
   public function testMariaDbPDOWrapper(): void
   {
-    $host = ini_get('safeservicewrapper.mariadb_host');
-    $port = ini_get('safeservicewrapper.mariadb_port');
-    $user = ini_get('safeservicewrapper.mariadb_user');
-    $dbname = ini_get('safeservicewrapper.mariadb_database');
+    $host = getnev('MARIADB_HOST');
+    $port = getnev('MARIADB_PORT');
+    $user = getnev('MARIADB_USER');
+    $dbname = getnev('MARIADB_DATABASE');
 
     // Create a MariaDbPdo instance
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
