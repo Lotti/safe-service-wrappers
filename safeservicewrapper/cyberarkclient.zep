@@ -52,20 +52,10 @@ class CyberarkClient
                             // Cache hit, decrypted, and valid
                             return [
                                 "password": cachedData["password"],
-                                "cache_file": cacheFilePath,
                                 "cache_hit": true
                             ];
                         }
-                        // Decryption ok, but data invalid/expired - proceed to fetch
-                    } else {
-                        // Decryption failed (e.g., key change, corruption) - proceed to fetch
-                        // Optional: Log decryption error
-                        // error_log("CyberarkClient cache decryption failed for: " . cacheFilePath);
-                        // Optional: Delete corrupted cache file
-                        // unlink(cacheFilePath);
                     }
-                } else {
-                    // Cache file exists but is empty - proceed to fetch
                 }
             }
         }
@@ -204,7 +194,6 @@ class CyberarkClient
         // Return fetched password and cache status
         return [
             "password": password,
-            "cache_file": cacheFilePath,
             "cache_hit": false // It was fetched, not from cache this time
         ];
     }

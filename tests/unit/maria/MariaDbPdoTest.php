@@ -23,8 +23,8 @@ final class MariaDbPdoTest extends GlobalTest
     $this->assertInstanceOf('PDOStatement', $result, "Querying should return instance of PDOStatement class");
 
     $row = $result->fetch(\PDO::FETCH_NUM);
-    $this->assertSame($row, ["2"], "Row should be equal to [2]");
+    $this->assertSame($row, [2], "Row should be equal to [2]");
 
-    $pdo->close();
+    $pdo = null;
   }
 }

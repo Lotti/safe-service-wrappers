@@ -16,7 +16,7 @@ VALKEY_CONTAINER_ID=$(docker run -d --rm \
   --name "${VALKEY_CONTAINER_NAME}" \
   --network "${NETWORK_NAME}" \
   -p 6379:6379 \
-  -v ./tests/valkey:/usr/local/etc/valkey \
+  -v ./tests/valkey_conf:/usr/local/etc/valkey \
   valkey/valkey:8.1-alpine \
   valkey-server /usr/local/etc/valkey/valkey.conf)
 echo "Valkey container started: ${VALKEY_CONTAINER_ID}"

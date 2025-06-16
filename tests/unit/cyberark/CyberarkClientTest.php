@@ -43,8 +43,15 @@ final class CyberarkClientTest extends GlobalTest {
 
     // Second call (should be cache hit)
     $result2 = \SafeServiceWrapper\CyberarkClient::fetchPassword($host, $port, $user);
-    $this->assertSame($result1['cache_file'], $result2['cache_file']);
     $this->assertSame($result2['password'], $expectedPassword, "Password should match configured one");
-    $this->assertFalse($result2['cache_hit'], "Expected cache hit on second fetch");
+    $this->assertTrue($result2['cache_hit'], "Expected cache hit on second fetch");
+
+    // Wait a moment, but less than TTL
+    sleep($cacheTtl + 5);
+
+    // Second call (should be cache hit)
+    $result3 = \SafeServiceWrapper\CyberarkClient::fetchPassword($host, $port, $user);
+    $this->assertSame($result3['password'], $expectedPassword, "Password should match configured one");
+    $this->assertFalse($result3['cache_hit'], "Expected cache miss on third fetch");
  }
 }

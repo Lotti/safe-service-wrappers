@@ -24,7 +24,7 @@ final class MariaDbMysqliTest extends GlobalTest
     $this->assertInstanceOf('mysqli_result', $result, "Querying should return instance of mysqli_result class");
 
     $row = $result->fetch_row();
-    $this->assertSame($row, ["2"], "Row should be equal to [2]");
+    $this->assertSame($row, ['2'], "Row should be equal to ['2']");
 
     $mysqli->close();
   }
