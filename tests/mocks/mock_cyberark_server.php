@@ -17,13 +17,21 @@ if ($requestMethod === 'GET' && strpos($requestUri, $targetPath) === 0) {
           http_response_code(200);
           echo json_encode(['Content' => 'cache1234']);
           exit;
-        case 'testuser':
+        case 'mariauser':
           http_response_code(200);
-          echo json_encode(['Content' => 'testpassword']);
+          echo json_encode(['Content' => 'mariapassword']);
           exit;
-        case 'test':
+        case 'oracleuser':
           http_response_code(200);
-          echo json_encode(['Content' => 'test1234']);
+          echo json_encode(['Content' => 'oraclepassword']);
+          exit;
+        case 'mongouser':
+          http_response_code(200);
+          echo json_encode(['Content' => 'mongopassword']);
+          exit;
+        case 'redisuser':
+          http_response_code(200);
+          echo json_encode(['Content' => 'redispassword']);
           exit;
         default:
           http_response_code(200);

@@ -24,6 +24,12 @@
     <testsuite name="maria">
       <directory>tests/unit/maria</directory>
     </testsuite>
+    <testsuite name="oracle">
+      <directory>tests/unit/oracle</directory>
+    </testsuite>
+    <testsuite name="mongo">
+      <directory>tests/unit/mongo</directory>
+    </testsuite>
     <testsuite name="cyberark">
       <directory>tests/unit/cyberark</directory>
     </testsuite>
@@ -32,6 +38,8 @@
   <php>
     <env name="VALKEY_CONTAINER" value="test_valkey" />
     <env name="MARIADB_CONTAINER" value="test_mariadb" />
+    <env name="ORACLE_CONTAINER" value="test_oracle" />
+    <env name="MONGODB_CONTAINER" value="test_mongodb" />
     <env name="CYBERARKMOCK_CONTAINER" value="test_cyberark" />
     <env name="CONTAINER_NETWORK" value="test_network" />
 
@@ -40,8 +48,18 @@
 
     <env name="MARIADB_HOST" value="127.0.0.1"/>
     <env name="MARIADB_PORT" value="3307"/>
-    <env name="MARIADB_USER" value="testuser"/>
-    <env name="MARIADB_DATABASE" value="testdb"/>
+    <env name="MARIADB_USER" value="mariauser"/>
+    <env name="MARIADB_DATABASE" value="mariadb"/>
+
+    <env name="ORACLE_HOST" value="127.0.0.1"/>
+    <env name="ORACLE_PORT" value="1521"/>
+    <env name="ORACLE_USER" value="oracleuser"/>
+    <env name="ORACLE_DATABASE" value="oracledb"/>
+
+    <env name="MONGO_HOST" value="127.0.0.1"/>
+    <env name="MONGO_PORT" value="3307"/>
+    <env name="MONGO_USER" value="mariauser"/>
+    <env name="MONGO_DATABASE" value="mariadb"/>
 
     <ini name="safeservicewrapper.cyberark.appid" value="TestAppID"/>
     <ini name="safeservicewrapper.cyberark.safe" value="TestSafe"/>
@@ -56,7 +74,7 @@
 
     <ini name="safeservicewrapper.redis.session_host" value="127.0.0.1"/>
     <ini name="safeservicewrapper.redis.session_port" value="6379"/>
-    <ini name="safeservicewrapper.redis.session_user" value="test"/>
+    <ini name="safeservicewrapper.redis.session_user" value="redisuser"/>
     <ini name="safeservicewrapper.redis.session_prefix" value="PHPREDIS_SESSION:"/>
     <ini name="safeservicewrapper.redis.weight" value="1"/>
     <ini name="safeservicewrapper.redis.session_timeout" value="0"/>

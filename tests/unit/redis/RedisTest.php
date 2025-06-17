@@ -19,7 +19,7 @@ final class RedisTest extends GlobalTest {
     $port = getenv('VALKEY_PORT');
 
     // Create a Redis instance
-    $redis = new \SafeServiceWrapper\Redis(['host' => $host, 'port' => intval($port), 'auth'=>['test']]);
+    $redis = new \SafeServiceWrapper\Redis(['host' => $host, 'port' => intval($port), 'auth'=>['redis']]);
     $this->assertInstanceOf('Redis', $redis, "Constructor should return instance of Redis class");
 
     // Perform basic operations
@@ -46,7 +46,7 @@ final class RedisTest extends GlobalTest {
     $connected = $redis->connect($host, intval($port));
     $this->assertTrue($connected, "connect() method should return true on success.");
 
-    $redis->auth('test');
+    $redis->auth(null);
 
     // Perform basic operations
     $setResult = $redis->set('phpunit_key_method', 'value2');

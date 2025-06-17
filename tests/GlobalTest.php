@@ -10,10 +10,12 @@ abstract class GlobalTest extends TestCase {
 
     $valkeyContainerName = getenv('VALKEY_CONTAINER');
     $mariaDBContainerName = getenv('MARIADB_CONTAINER');
+    $oracleContainerName = getenv('ORACLE_CONTAINER');
+    $mongodbContainerName = getenv('MONGODB_CONTAINER');
     $cyberarkMockContainerName = getenv('CYBERARKMOCK_CONTAINER');
     $networkName = getenv('CONTAINER_NETWORK');
 
-    exec("./start.sh $valkeyContainerName $mariaDBContainerName $cyberarkMockContainerName $networkName 2>&1");
+    exec("./start.sh $valkeyContainerName $mariaDBContainerName $oracleContainerName $mongodbContainerName $cyberarkMockContainerName $networkName 2>&1");
 
     # Wait for containers to start (crude check)
     sleep(5);
@@ -24,9 +26,11 @@ abstract class GlobalTest extends TestCase {
 
     $valkeyContainerName = getenv('VALKEY_CONTAINER');
     $mariaDBContainerName = getenv('MARIADB_CONTAINER');
+    $oracleContainerName = getenv('ORACLE_CONTAINER');
+    $mongodbContainerName = getenv('MONGODB_CONTAINER');
     $cyberarkMockContainerName = getenv('CYBERARKMOCK_CONTAINER');
     $networkName = getenv('CONTAINER_NETWORK');
 
-    exec("./stop.sh $valkeyContainerName $mariaDBContainerName $cyberarkMockContainerName $networkName 2>&1");
+    exec("./stop.sh $valkeyContainerName $mariaDBContainerName $oracleContainerName $mongodbContainerName $cyberarkMockContainerName $networkName 2>&1");
   }
 }
