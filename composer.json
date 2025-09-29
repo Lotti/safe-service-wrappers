@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "./build.sh",
+    "build-lts": "./build-lts.sh",
     "test": "vendor/bin/phpunit",
     "build-test": ["composer build", "composer test"]
   },
