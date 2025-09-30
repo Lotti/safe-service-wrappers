@@ -9,10 +9,14 @@
   },
   "scripts": {
     "build": "./build.sh",
+    "build-lts": "./build-lts.sh",
     "test": "vendor/bin/phpunit",
-    "build-test": ["composer build", "composer test"]
+    "build-test": [
+      "composer build",
+      "composer test"
+    ]
   },
   "require-dev": {
-    "phpunit/phpunit": "^12"
+    "phpunit/phpunit": "^12.3"
   }
 }

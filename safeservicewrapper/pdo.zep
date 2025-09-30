@@ -70,7 +70,9 @@ class Pdo extends \PDO {
             }
         }
 
-        let result["port"] = (int) result["port"];
+        if isset result["port"] {
+            let result["port"] = (int) result["port"];
+        }
 
         return result;
     }
